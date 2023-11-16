@@ -1,0 +1,111 @@
+.box_view_section {
+    max-width: 794px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.view_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view_top h3 {
+    color: #2B3674;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+    margin: 0;
+}
+
+.view_top p {
+    color: #707EAE;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
+
+.view_img img {
+    width: 762px;
+}
+
+.emp_view_img {
+    display: flex;
+    justify-content: center;
+    margin-top: -55px;
+}
+
+.emp_view_img img {
+    border-radius: 50px;
+    border: 3px solid #fff;
+    width: 111px;
+}
+
+.row.mt-3.me-3.ms-3 {
+    display: flex;
+    gap: 20px;
+}
+
+.col-md-3.view_col {
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.12);
+    padding: 22px 27px;
+}
+
+.col-md-3.view_col.gen {
+    width: 232px;
+}
+
+.col-md-3.view_col.age {
+    width: 230px;
+}
+
+.col-md-3.view_col.dob {
+    width: 230px;
+}
+
+.col-md-3.view_col.mob {
+    width: 356px;
+}
+
+.col-md-3.view_col.qua {
+    width: 356px;
+}
+
+.form-label {
+    color: #707EAE;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.28px;
+}
+
+.form-control.input {
+    border: none;
+    color: #2B3674;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.btn_view {
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+    margin-right: 16px;
+}

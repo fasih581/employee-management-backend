@@ -1,0 +1,156 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="edit_emp" id="zero-edit">
+                    <div class="popup_header">
+                        <h4>Edit Employee</h4>
+                        <button type="button" class="btn" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"
+                                style="color: #2B3674;"></i></button>
+                    </div>
+                    <div class="popup_body">
+                        <div class="col top_col -lg-6 mt-3">
+                            <div class="card-body edit_body">
+                                <div class="edit_emp_img">
+                                    <img id="editImg" src="" alt="">
+                                </div>
+                                <!-- <input type="file" id="edit_epm_file" accept="image/*"> -->
+                                <label for="edit_epm_file">
+                                    <button type="button" class="btn btn-light">Change</button>
+                                </label>
+                            </div>
+                            <div class="row mt-3">
+                                <div class=" col-md-3 mb-3 ">
+                                    <label for="exampleFormControlInput1" class="form-label">Salutation</label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        id="edit-salutation">
+                                        <option selected>select</option>
+                                        <option value="Mr">Mr.</option>
+                                        <option value="Mrs">Mrs.</option>
+                                    </select>
+                                </div>
+                                <div class=" col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="edit-firstName" placeholder="john">
+                                </div>
+                                <div class=" col-md-4 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="edit-lastName" placeholder="doe ">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="edit-email"
+                                        placeholder="mail@simmmple.com">
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>
+                                    <input type="text" class="form-control" id="edit-mobilenumber"
+                                        placeholder="enter your Mobile Number">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control date" id="edit-dob"
+                                        placeholder="select date of birth">
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Gender</label>
+                                    <div class="d-flex gap-4">
+                                        <div class="d-flex gap-2 mt-2">
+                                            <input class="form-check-input" type="radio" name="genders" id="edit-gender"
+                                                value="male" aria-label="...">
+                                            <label for="exampleFormControlInput1" class="form-label Gender">Male</label>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-2">
+                                            <input class="form-check-input" type="radio" name="genders" id="edit-gender"
+                                                value="female" aria-label="...">
+                                            <label for="exampleFormControlInput1"
+                                                class="form-label Gender">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-12 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Qualifications</label>
+                                    <input type="text" class="form-control" id="edit-qualifications"
+                                        placeholder="enter address">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-12 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="edit-address"
+                                        placeholder="enter address">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Country</label>
+                                    <select class="form-select" aria-label="Default select example" id="edit-country"
+                                        placeholder="select Country">
+                                        <option selected>select country</option>
+                                        <option value="India">India</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Brazil">Brazil</option>
+                                        <option value="China">China</option>
+                                    </select>
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">State</label>
+                                    <select class="form-select" aria-label="Default select example" id="edit_state"
+                                        placeholder="select state">
+                                        <option selected>select state</option>
+                                        <option selected>select State</option>
+                                        <option>Kerala</option>
+                                        <option>Tamilnadu</option>
+                                        <option>Etc...</option>
+                                    </select>
+                                </div>
+                                <!-- <div class=" col-md-6 mb-3 ">
+                                    <label for="exampleFormControlInput1" class="form-label">State</label>
+                                    <select class="form-select" id="edit_state"
+                                        placeholder="select state">
+                                        <option selected>select state</option>
+                                        <option value="kerala">kerala</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                    </select>
+                                </div> -->
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="edit-city" placeholder="enter city">
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Pin/Zip</label>
+                                    <input type="text" class="form-control" id="edit-pin" placeholder="enter zip/pin">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="edit-username"
+                                        placeholder="enter your username">
+                                </div>
+                                <div class=" col-md-6 mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="edit-password"
+                                        placeholder="enter your password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup_footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" onclick="read_emp()" data-bs-dismiss="modal">Save
+                            Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
