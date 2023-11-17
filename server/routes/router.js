@@ -9,7 +9,7 @@ const controller = require("../controller/controller");
 route.get("/", services.homeRoutes);
 
 // API
-route.post('/api/employee', controller.create);
+route.post('/api/employees', controller.create);
 route.get("/api/employees", controller.find);
 route.put("/api/employees/:id", controller.update);
 route.delete("/api/employees/:id", controller.delete);

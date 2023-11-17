@@ -1,131 +1,133 @@
 <div class="main_page">
-    <!-- main_header -->
-    <div class="main_header">
-        <div class="mini_box">
-            <h4>Dashboard / Employees</h4>
-            <h1>Employees</h1>
-        </div>
-        <div class="main_box_right">
-            <div class="main_input">
-                <div class="input">
-                    <i class="fa-solid fa-magnifying-glass" style="color: #101032;"></i>
-                    <input type="text" placeholder="Search" id="search_input" onkeyup="searchEmployee()">
+                <!-- main_header -->
+                <div class="main_header">
+                    <div class="mini_box">
+                        <h4>Dashboard / Employees</h4>
+                        <h1>Employees</h1>
+                    </div>
+                    <div class="main_box_right">
+                        <div class="main_input">
+                            <div class="input">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #101032;"></i>
+                                <input type="text" placeholder="Search" id="search_input" onkeyup="searchEmployee()">
+                            </div>
+                            <i class="fa-regular fa-bell main" style="color: #D3D8E2;"></i>
+                            <div class="main_img">
+                                <img src="img/Elipse 5.png" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <i class="fa-regular fa-bell main" style="color: #D3D8E2;"></i>
-                <div class="main_img">
-                    <img src="img/Elipse5.png" alt="">
+
+                <!-- main_section -->
+                <div class="main_section">
+                    <div class="box_main_section">
+                        <div class="main_section_table_head">
+                            <div class="main_section_table">
+                                <h3>Employees List</h3>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                </select>
+                                <p>of 10</p>
+                                <button type="button" class="btn btn-primary" onclick="btn_filled()">Add
+                                    Employee</button>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Sl.No</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Name</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Email</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Phone</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Gender</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>DOM</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th scope="col">
+                                            <select class="form-select_emp_list_col"
+                                                aria-label="Default select example">
+                                                <option selected>Country</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <!-- emp_list -->
+                                <tbody class="table_body" id="table_body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pagination -->
+                <div class="pagination">
+                    <button class="pg_btn" id="pageleft"><i class="bi bi-chevron-left"></i></button>
+                    <div class="pgno" id="pgno"></div>
+                    <button class="pg_btn" id="pageright"><i class="bi bi-chevron-right"></i></button>
+                </div>
+
+                <!-- main footer -->
+                <div class="main_footer">
+                    <div class="footer_bx">
+                        <p>© 2023 All Rights Reserved. Stackup</p>
+                        <div class="main_footer_right">
+                            <p>Terms of Use</p>
+                            <p>Privacy Policy</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- main_section -->
-    <div class="main_section">
-        <div class="box_main_section">
-            <div class="main_section_table_head">
-                <div class="main_section_table">
-                    <h3>Employees List</h3>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>1</option>
-                        <option value="1">2</option>
-                        <option value="2">3</option>
-                        <option value="3">4</option>
-                    </select>
-                    <p>of 10</p>
-                    <button type="button" class="btn btn-primary" onclick="btn_filled()">Add
-                        Employee</button>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Sl.No</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Name</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Email</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Phone</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Gender</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>DOM</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select class="form-select_emp_list_col"
-                                    aria-label="Default select example">
-                                    <option selected>Country</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <!-- emp_list -->
-                    <tbody class="table_body" id="table_body"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- pagination -->
-    <div class="pagination">
-        <button class="pg_btn" id="pageleft"><i class="bi bi-chevron-left"></i></button>
-        <div class="pgno" id="pgno"></div>
-        <button class="pg_btn" id="pageright"><i class="bi bi-chevron-right"></i></button>
-    </div>
-
-    <!-- main footer -->
-    <div class="main_footer">
-        <div class="footer_bx">
-            <p>© 2023 All Rights Reserved. Stackup</p>
-            <div class="main_footer_right">
-                <p>Terms of Use</p>
-                <p>Privacy Policy</p>
-            </div>
-        </div>
-    </div>
-</div>

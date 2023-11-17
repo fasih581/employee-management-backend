@@ -1,22 +1,25 @@
 const mongoose = require("mongoose");
 
 var schema = new mongoose.Schema({
-  Firstname: {
+  salutation :{
     type: String,
   },
-  Lastname: {
+  firstname: {
     type: String,
   },
-  EmailAddress: {
+  lastname: {
     type: String,
   },
-  Mobilenumber: {
+  emailAddress: {
+    type: String,
+  },
+  mobilenumber: {
     type: Number,
   },
   DOB: {
     type: String,
   },
-  Gender: {
+  gender: {
     type: String,
   },
   qualifications: {
