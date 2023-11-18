@@ -7,7 +7,7 @@ const isEmpty = (obj) => {
 // create and save new user
 exports.create = (req, res) => {
   // validate request
-  if (isEmpty(req.body)) {
+  if (!req.body){
     return res.status(400).json({ message: "Content cannot be empty!" });
   }
   const requiredFields = [
@@ -61,7 +61,7 @@ for (const field of requiredFields) {
     .save()
     .then((data) => {
       res.status(201).json(data); // 201 status for successful creation
-      res.send(data);
+      // res.send(data);
     })
     .catch((err) => {
       console.error("Error creating user:", err);

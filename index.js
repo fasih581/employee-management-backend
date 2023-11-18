@@ -17,6 +17,8 @@ app.use(morgan("tiny"));
 // mongoDb connection
 connectDB();
 
+app.use(express.json())
+
 // parser request to bady-parser
 app.use(bodyparser.urlencoded({ extended: true }));
 
@@ -30,6 +32,7 @@ app.use("/img", express.static(path.resolve(__dirname, "assets/img")));
 app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
 
 // load routers
+// app.use("/", require("./server/routes/router"));
 app.use("/", require("./server/routes/router"));
 
 app.listen(PORT, () =>

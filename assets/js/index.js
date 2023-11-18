@@ -19,12 +19,10 @@ var apiurl = "http://localhost:8080/api/employees";
 
 // get employees detials
 read_emp();
-
 async function read_emp() {
   let temp = "";
-  await fetch(apiurl)
+  await fetch("http://localhost:8080/api/employees")
     .then((res) => {
-      
       return res.json();
     })
     .then((data) => {
@@ -37,14 +35,14 @@ async function read_emp() {
 
       for (var i = start; i < end; i++) {
         // employees id
-        var id = data[i].id;
+        var id = data[i]._id;
         // console.log(id);
         const employees = data[i];
 
         temp += `<tr class="emp_column">
             <td>#${i + 1}</td>
             <td class="td_emp_img">
-                <div class="table_emp_img"><img src='${apiurl}/${employees.id}/avatar' style="width:30px; height:30px;">
+                <div class="table_emp_img"><img src='/avatar' style="width:30px; height:30px;">
                 </div>${
                   employees.salutation +
                   " " +
@@ -65,10 +63,10 @@ async function read_emp() {
         <i class="fa-solid fa-ellipsis"></i>
       </button>
       <ul class="dropdown-menu v_e_d_menu">
-        <li><a href="view.html?id=${employees.id}"><button class="dropdown-item" type="button" onclick=homeEmployee()><i class="bi bi-eye"></i>View Details</button></a></li>
+        <li><a href="/view/?id=${employees._id}"><button class="dropdown-item" type="button" onclick=homeEmployee()><i class="bi bi-eye"></i>View Details</button></a></li>
         <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="editEmp('${id}')"><i class="bi bi-pencil-fill"></i>Edit</button></li>
         <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" 
-        onclick=delete_emp('${employees.id}')><i class="bi bi-trash"></i>Delete</button></li>
+        onclick=delete_emp('${employees._id}')><i class="bi bi-trash"></i>Delete</button></li>
       </ul>
     </div>
             </td>
@@ -77,7 +75,9 @@ async function read_emp() {
     });
   document.getElementById("table_body").innerHTML = temp;
 }
-// const addForm = document.getElementById("add_employee_form");
+
+
+
 //send the POST request
 const sumbit_emp = document.getElementById("submit_data");
 sumbit_emp.addEventListener("click", (e) => {
@@ -89,10 +89,10 @@ sumbit_emp.addEventListener("click", (e) => {
   }
 
   var salutation = document.getElementById("salutation").value;
-  var firstName = document.getElementById("firstname").value;
-  var lastName = document.getElementById("lastname").value;
-  var email = document.getElementById("emailAddress").value;
-  var phone = document.getElementById("mobilenumber").value;
+  var firstname = document.getElementById("firstname").value;
+  var lastname = document.getElementById("lastname").value;
+  var emailAddress = document.getElementById("emailAddress").value;
+  var mobilenumber = document.getElementById("mobilenumber").value;
   var dob = document.getElementById("DOB").value;
   var qualifications = document.getElementById("qualifications").value;
   var address = document.getElementById("address").value;
@@ -101,6 +101,7 @@ sumbit_emp.addEventListener("click", (e) => {
   var city = document.getElementById("city").value;
   var password = document.getElementById("password").value;
   var username = document.getElementById("username").value;
+  var pinzip = document.getElementById("pinzip").value;
 
   // gander
   var gender = document.querySelector('input[name="gender"]:checked').value;
@@ -119,75 +120,70 @@ sumbit_emp.addEventListener("click", (e) => {
 
   const post_emp = {
     salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    dob: newDate,
+    firstname,
+    lastname,
+    emailAddress,
+    mobilenumber,
+    DOB: newDate,
     address,
     country,
     state,
     city,
-    password: password,
-    username: username,
+    password,
+    username,
     gender,
     qualifications,
+    pinzip,
   };
 
-  fetch(apiurl, {
+  console.log(post_emp)
+  fetch('http://localhost:8080/api/employees', {
     
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(post_emp),
-    
   })
     .then((res) => {
       // Parse the response JSON once and store it in a variable
       return res.json();
-      
     })
-    // .then((post_emp) => {
+    .then((post_emp) => {
+      console.log(post_emp);
 
-    //       // Image upload
-    //       const uploadImage = document.getElementById("input_file");
-    //       const formData = new FormData();
-    //       formData.append("avatar", uploadImage.files[0]);
-    //       console.log("data id",post_emp.id);
+        //   // Image upload
+        //   const uploadImage = document.getElementById("input_file");
+        //   const formData = new FormData();
+        //   formData.append("avatar", uploadImage.files[0]);
+        //   console.log("data id",post_emp.id);
 
-    //       fetch(`${apiurl}/${post_emp.id}/avatar`, {
-    //       method: "POST",
-    //       body: formData,
-    //     })
-        .then((res) => {
-          console.log("Response JSON:", post_emp) // Log the parsed JSON response
-          
-          window.alert("Employee added successfully");
+        //   fetch(`${apiurl}/${post_emp.id}/avatar`, {
+        //   method: "POST",
+        //   body: formData,
+        // })
+        // .then((res) => {
+          // console.log("Response JSON:", post_emp); // Log the parsed JSON response
+          // window.alert("Employee added successfully");
           clearform();
           showPopup();         
           read_emp();
-
-          
-        })
-        .then(employees => {
-          console.log(employees);
-        })
-        .catch((error) => {
-          console.error("Error uploading image:", error);
-        });
+        // })
+        // .catch((error) => {
+        //   console.error("Error uploading image:", error);
+        // });
     })
     .catch((error) => {
       console.error("Fetch error:", error);
     });
-
+});
 
 
 // detet employee
 function delete_emp(id) {
     console.log(id);
   
-    fetch(`${apiurl}/${id}`, {
+    fetch(`http://localhost:8080/api/employees/${id}`, {
       method: "DELETE",
     });
   }
@@ -195,18 +191,18 @@ function delete_emp(id) {
 //  clear the form
 function clearform() {
     var salutation = (document.getElementById("salutation").value = "");
-    var firstName = (document.getElementById("firstname").value = "");
-    var lastName = (document.getElementById("lastname").value = "");
-    var email = (document.getElementById("emailAddress").value = "");
-    var phone = (document.getElementById("mobilenumber").value = "");
-    var dob = (document.getElementById("DOB").value = "");
+    var firstname = (document.getElementById("firstname").value = "");
+    var lastname = (document.getElementById("lastname").value = "");
+    var emailAddress = (document.getElementById("emailAddress").value = "");
+    var mobilenumber = (document.getElementById("mobilenumber").value = "");
+    var DOB = (document.getElementById("DOB").value = "");
     var qualifications = (document.getElementById("qualifications").value = "");
     var address = (document.getElementById("address").value = "");
     var gender = (document.querySelector('input[name="gender"]:checked').value ="");
     var country = (document.getElementById("country").value = "");
     var state = (document.getElementById("state").value = "");
     var city = (document.getElementById("city").value = "");
-    var Pin = (document.getElementById("pinzip").value = "");
+    var pinzip = (document.getElementById("pinzip").value = "");
     var password = (document.getElementById("password").value = "");
     var username = (document.getElementById("username").value = "");
     var image = (document.getElementById("input_file").value = "");
@@ -215,7 +211,7 @@ function clearform() {
   // edit employee detials
   function editEmp(id) {
     console.log(id);
-    fetch(`${apiurl}/${id}`, {
+    fetch(`http://localhost:8080/api/employees?id=${id}`, {
       method: "get",
     })
       .then((res) => res.json())
@@ -234,11 +230,11 @@ function clearform() {
         document.getElementById("editImg").src=`http://localhost:3000/employees/${employ.id}/avatar`
   
         document.getElementById("edit-salutation").value = employ.salutation;
-        document.getElementById("edit-firstName").value = employ.firstName;
-        document.getElementById("edit-lastName").value = employ.lastName;
-        document.getElementById("edit-email").value = employ.email;
-        document.getElementById("edit-mobilenumber").value = employ.phone;
-        document.getElementById("edit-dob").value = formatchange(employ.dob);
+        document.getElementById("edit-firstName").value = employ.firstname;
+        document.getElementById("edit-lastName").value = employ.lastname;
+        document.getElementById("edit-email").value = employ.emailAddress;
+        document.getElementById("edit-mobilenumber").value = employ.mobilenumber;
+        document.getElementById("edit-dob").value = formatchange(employ.DOB);
 
         var gender = document.getElementsByName("genders");
         var dbgender = employ.gender;
@@ -255,7 +251,7 @@ function clearform() {
         document.getElementById("edit-city").value = employ.city;
         document.getElementById("edit-password").value = employ.password;
         document.getElementById("edit-username").value = employ.username;
-        document.getElementById("edit-pin").value = employ.Pin;
+        document.getElementById("edit-pin").value = employ.pinzip;
         document.getElementById("edit-qualifications").value = employ.qualifications;
       });
   
@@ -277,12 +273,12 @@ function clearform() {
   
       let formup = {
         salutation: document.getElementById("edit-salutation").value,
-        firstName: document.getElementById("edit-firstName").value,
-        lastName: document.getElementById("edit-lastName").value,
-        email: document.getElementById("edit-email").value,
-        phone: document.getElementById("edit-mobilenumber").value,
+        firstname: document.getElementById("edit-firstName").value,
+        lastname: document.getElementById("edit-lastName").value,
+        emailAddress: document.getElementById("edit-email").value,
+        mobilenumber: document.getElementById("edit-mobilenumber").value,
         address: document.getElementById("edit-address").value,
-        dob: editdateupdate,
+        DOB: editdateupdate,
         country: document.getElementById("edit-country").value,
         state : document.getElementById("edit_state").value,
         city: document.getElementById("edit-city").value,
@@ -290,10 +286,10 @@ function clearform() {
         password: document.getElementById("edit-password").value,
         username: document.getElementById("edit-username").value,
         qualifications: document.getElementById("edit-qualifications").value,
-        Pin : document.getElementById("edit-pin").value,
+        pinzip : document.getElementById("edit-pin").value,
       };
   
-      fetch(`${apiurl}/${id}`, {
+      fetch(`http://localhost:8080/api/employees/${id}`, {
         method: "put",
         headers: {
           "Content-Type": "application/json",
