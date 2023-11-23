@@ -46,6 +46,9 @@ var schema = new mongoose.Schema({
   password: {
     type: String,
   },
+  avatar: {
+    type: String,
+  },
 });
 
 const addEmp = mongoose.model('addemp',schema);

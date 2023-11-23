@@ -6,7 +6,7 @@ let id = params.get("id");
 console.log("id =", id);
 // -------------------------------------VIEW EMPLOYEE-------------------------------
 function viewDetails(id) {
-  fetch(`http://localhost:8080/api/employees/?id=${id}`,{
+  fetch(`http://localhost:8080/api/employees/${id}`,{
   method : "GET",
 })
     .then((res) => {
@@ -14,8 +14,12 @@ function viewDetails(id) {
       console.log("id =", id);
     })
       .then((data) => {
+
+        // Log the avatar URL
+      console.log("Avatar URL:", data.avatar);
+
         console.log(data);
-      // document.getElementById("viewEmployeeProfilePic").innerHTML = ` <img src="http://localhost:3000/employees/${id}/avatar" >`;
+      document.getElementById("viewEmployeeProfilePic").innerHTML = ` <img src='../${data.avatar}' >`;
       const fullName =
         data.salutation + " " + data.firstname + " " + data.lastname;
       document.getElementById("employeeName").innerHTML = fullName;

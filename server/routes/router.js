@@ -30,10 +30,11 @@ route.get("/", services.homeRoutes);
 
 // get view employee page
 route.get("/view/", services.viewRoutes);
-
-// API
+route.get("/api/employees/search/:key", controller.searchEmployee);
+route.get("/api/employees/:id", controller.getEmployee);// API
+route.get("/api/employees", controller.getEmployees);
 route.post("/api/employees", controller.create);
-route.get("/api/employees", controller.find);
+// route.get("/api/employees", controller.find);
 route.put("/api/employees/:id", controller.update);
 route.delete("/api/employees/:id", controller.delete);
 
