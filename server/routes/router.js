@@ -1,35 +1,40 @@
-const express = require("express");
+const express = require('express');
 const route = express.Router();
-// const multer = require("multer");
+
 
 const services = require("../services/render");
 const controller = require("../controller/controller");
+const usercontroller = require("../controller/usercontroller");
+const validateToken = require("../middleware/validateTokenHendler")
+const isAuth = require("../Auth/isAuth");
 
-// // image upload
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "./uploads");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
-//   },
-// });
+// get login page
+route.get("/api/login", services.loginRoutes);
 
-// var upload = multer({
-//     storage : storage,
-// }).single("image");
+// get sign page
+route.get("/api/signup", services.signRoutes);
 
-// // Insert an user image into database route
-// route.post('/api/employees', upload, (req, res) => {
+// usercontroller
+// login
+route.post("/user/login", usercontroller.checkEmp);
 
-// })
+// signup
+route.post("/user/signup", usercontroller.create);
+
+// current user
+route.get("/user/current", validateToken.validateToken, usercontroller.currentUser);
+
+// logout
+route.get("/user/logout", validateToken.validateToken, usercontroller.logout);
+// end usercontroller
 
 // @description root routes
 // @method GET/
-route.get("/", services.homeRoutes);
+route.get("/",  services.homeRoutes);
 
 // get view employee page
-route.get("/view/", services.viewRoutes);
+route.get("/view/",  services.viewRoutes);
+// 
 route.get("/api/employees/search/:key", controller.searchEmployee);
 route.get("/api/employees/:id", controller.getEmployee);// API
 route.get("/api/employees", controller.getEmployees);

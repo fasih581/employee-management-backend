@@ -10,12 +10,12 @@
 }
 
 .box {
-  max-width: 1366px;
+  max-width: 1847px;
   margin: auto;
 }
 
 .box_main_section {
-  max-width: 1000px;
+  max-width: 1456px;
   margin: auto;
   display: flex;
   flex-direction: column;

@@ -1,0 +1,225 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+.container {
+  max-width: 1270px;
+  margin: 100px auto;
+}
+
+.box {
+  display: flex;
+  height: 80vh;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
+
+.box_left {
+  width: 50%;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+p {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.box_leftall {
+  width: 73%;
+}
+
+.box_input {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 60px;
+}
+
+#email:focus {
+  border-color: #50c878;
+  outline: 0;
+  box-shadow: none;
+  /* box-shadow: 0 0 0 .25rem rgb(80, 200, 120); */
+}
+
+#password:focus {
+  border-color: #50c878;
+  outline: 0;
+  box-shadow: none;
+  /* box-shadow: 0 0 0 .25rem rgb(80, 200, 120); */
+}
+
+.form-label.pass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form-control.input_box {
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  color: black;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  height: 45px;
+  padding: 10px 0px 10px 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+input#username {
+    color: black;
+}
+
+.box_pass span a {
+  text-decoration: none;
+  color: #0c2a92;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+/* cheakbox */
+
+/* .form-check.checkboxfil {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#Checkbox:focus {
+  border-color: #50c878;
+  box-shadow: none;
+}
+
+#Checkbox {
+  border-radius: 2px;
+  border: 1px solid #000;
+}
+
+.checkbox-label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+} */
+
+/* ======================================= */
+
+.login {
+  width: 100%;
+  display: flex;
+  height: 40px;
+  padding: 10px 0px 10px 10px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #3a5b22;
+  background: #3a5b22;
+  justify-content: center;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.line {
+  height: 1px;
+  background-color: #d4d4d4;
+  margin: 50px 0 50px;
+  position: relative;
+}
+
+.line::before {
+  content: "Or";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #232836;
+  padding: 0 15px;
+}
+
+.authentication {
+  margin-top: 50px;
+  display: flex;
+  gap: 10px;
+}
+
+.auth {
+  /* width: 45%; */
+  display: flex;
+  padding: 4px 20px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  justify-content: center;
+}
+
+.auth h5 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 131px;
+}
+
+.sign {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.sign p a {
+  text-decoration: none;
+  color: #0f3dde;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/*  */
+.box_right img {
+  height: 80vh;
+  width: 648px;
+}

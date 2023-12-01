@@ -13,19 +13,19 @@ function close_btn() {
   clearform();
 }
 
-function display(data,maxCountOnPage){
+function display(data, maxCountOnPage) {
   let temp = "";
 
   for (var i = 0; i < data.length; i++) {
     // employees id
     var id = data[i]._id;
-    console.log(id);
-    let employees = data[i]
-    
+    let employees = data[i];
     temp += `<tr class="emp_column">
-    <td>#${(CurrentPage-1)*maxCountOnPage+i + 1}</td>
+    <td>#${(CurrentPage - 1) * maxCountOnPage + i + 1}</td>
     <td class="td_emp_img">
-        <div class="table_emp_img"><img src='${employees.avatar}' style="width:30px; height:30px;">
+        <div class="table_emp_img"><img src='${
+          employees.avatar
+        }' style="width:30px; height:30px;">
         </div>${
           employees.salutation +
           " " +
@@ -33,10 +33,8 @@ function display(data,maxCountOnPage){
           " " +
           employees.lastname
         }</td>
-    <td>${employees.emailAddress
-    }</td>
-    <td>${employees.mobilenumber
-    }</td>
+    <td>${employees.emailAddress}</td>
+    <td>${employees.mobilenumber}</td>
     <td>${employees.gender}</td>
     <td>${employees.DOB}</td>
     <td>${employees.country}</td>
@@ -46,165 +44,42 @@ function display(data,maxCountOnPage){
 <i class="fa-solid fa-ellipsis"></i>
 </button>
 <ul class="dropdown-menu v_e_d_menu">
-<li><a href="/view/?id=${employees._id}"><button class="dropdown-item" type="button" onclick=homeEmployee()><i class="bi bi-eye"></i>View Details</button></a></li>
+<li><a href="/view/?id=${
+      employees._id
+    }"><button class="dropdown-item" type="button" onclick=homeEmployee()><i class="bi bi-eye"></i>View Details</button></a></li>
 <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="editEmp('${id}')"><i class="bi bi-pencil-fill"></i>Edit</button></li>
 <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-onclick=delete_emp('${employees._id}')><i class="bi bi-trash"></i>Delete</button></li>
+onclick=delete_emp('${
+      employees._id
+    }')><i class="bi bi-trash"></i>Delete</button></li>
 </ul>
 </div>
     </td>
     </tr>`;
-}
+  }
 
-document.getElementById("table_body").innerHTML = temp;
-
+  document.getElementById("table_body").innerHTML = temp;
 }
 
 // get employees detials
 read_emp();
 async function read_emp() {
-  maxCountOnPage=3;
+  maxCountOnPage = 5; //its the number if data to be displayed on the page
 
-  await fetch(`http://localhost:8080/api/employees?page=${CurrentPage}&size=${maxCountOnPage}`)
+  await fetch(
+    `http://localhost:8080/api/employees?page=${CurrentPage}&size=${maxCountOnPage}`
+  )
     .then((res) => {
       return res.json();
     })
     .then((data) => {
       console.log(data);
-      //its the number if data to be displayed on the page
-      const totalPages = Math.ceil(data.maxCountOnPage.length/maxCountOnPage); //finding the total pages as per the data
+      const totalPages = Math.ceil(data.maxCountOnPage.length / maxCountOnPage); //finding the total pages as per the data
       pagination(totalPages); //returning the value to pagination function
-     
-     display(data.employees,maxCountOnPage);
-    })
-  };
 
-// async function read_emp() {
-//   let temp = "";
-//   await fetch(`http://localhost:8080/api/employees`)
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       for (var i = 0; i < data.length; i++) {
-//         // employees id
-//         var id = data[i]._id;
-//         // console.log(id);
-//         let employees = data[i];
-
-//         temp += `<tr class="emp_column">
-//             <td>#${i + 1}</td>
-//             <td class="td_emp_img">
-//                 <div class="table_emp_img"><img src='${employees.avatar}' style="width:30px; height:30px;">
-//                 </div>${
-//                   employees.salutation +
-//                   " " +
-//                   employees.firstname +
-//                   " " +
-//                   employees.lastname
-//                 }</td>
-//             <td>${employees.emailAddress}</td>
-//             <td>${employees.mobilenumber}</td>
-//             <td>${employees.gender}</td>
-//             <td>${employees.DOB}</td>
-//             <td>${employees.country}</td>
-//             <td>
-//         <div class="v_e_d_box">
-//       <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-//         <i class="fa-solid fa-ellipsis"></i>
-//       </button>
-//       <ul class="dropdown-menu v_e_d_menu">
-//         <li><a href="/view/?id=${
-//           employees._id
-//         }"><button class="dropdown-item" type="button" onclick=homeEmployee()><i class="bi bi-eye"></i>View Details</button></a></li>
-//         <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="editEmp('${id}')"><i class="bi bi-pencil-fill"></i>Edit</button></li>
-//         <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" 
-//         onclick=delete_emp('${
-//           employees._id
-//         }')><i class="bi bi-trash"></i>Delete</button></li>
-//       </ul>
-//     </div>
-//             </td>
-//             </tr>`;
-//       }
-//     });
-//   document.getElementById("table_body").innerHTML = temp;
-
-// const tr = document.getElementById("table_body").getElementsByTagName("tr");
-// var empno = tr.length;
-// // console.log(empno);
-// var pageno = document.getElementById("pagina");
-// var display = 5;
-// var count = 1;
-// var buttcount = Math.ceil(empno / display);
-// for (let i = 1; i <= buttcount; i++) {
-//   var button = document.createElement("button");
-//   button.innerHTML = i;
-//   pageno.appendChild(button);
-// }
-// document.getElementById("pageleft").addEventListener("click", prev);
-// document.getElementById("pageright").addEventListener("click", next);
-// document.getElementById("pageleft").setAttribute("disabled", true);
-// function main(pageNum) {
-//   console.log("pageNum");
-//   var nextpage = display * pageNum;
-//   var prevpage = display * (pageNum - 1);
-//   for (let i = 0; i < empno; i++) {
-//     tr[i].style.display = "none";
-//     if (i >= prevpage && i < nextpage) {
-//       tr[i].style.display = "table-row";
-//     }
-//   }
-// }
-// main(1);
-// var pagbutton = pagina.getElementsByTagName("button");
-// // console.log(pagbutton.length);
-// for (i = 0; i < pagbutton.length; i++) {
-//   pagbutton[i].addEventListener("click", buttonclick);
-// }
-// pagbutton[count - 1].classList.add("buttoncss");
-// function buttonclick() {
-//   pagbutton[count - 1].classList.remove("buttoncss");
-//   if (this.innerHTML == buttcount) {
-//     document.getElementById("pageright").setAttribute("disabled", true);
-//     document.getElementById("pageleft").removeAttribute("disabled");
-//   } else if (this.innerHTML == 1) {
-//     document.getElementById("pageright").removeAttribute("disabled");
-//     document.getElementById("pageleft").setAttribute("disabled", true);
-//   } else {
-//     document.getElementById("pageleft").removeAttribute("disabled");
-//     document.getElementById("pageright").removeAttribute("disabled");
-//   }
-//   count = this.innerHTML;
-//   main(count);
-//   this.classList.add("buttoncss");
-// }
-// function prev() {
-//   pagbutton[count - 1].classList.remove("buttoncss");
-//   pagbutton[count - 2].classList.add("buttoncss");
-//   document.getElementById("pageleft").removeAttribute("disabled");
-//   if (count !== 1) {
-//     count--;
-//   }
-//   if (count == 1) {
-//     document.getElementById("pageleft").setAttribute("disabled", true);
-//   }
-//   main(count);
-// }
-// function next() {
-//   document.getElementById("pageright").removeAttribute("disabled");
-//   if (count !== buttcount) {
-//     pagbutton[count - 1].classList.remove("buttoncss");
-//     pagbutton[count].classList.add("buttoncss");
-//     count++;
-//   }
-//   if (count == pagbutton) {
-//     document.getElementById("pageright").setAttribute("disbled", true);
-//   }
-//   main(count);
-// }
-// }
+      display(data.employees, maxCountOnPage);
+    });
+}
 
 const chooseFile = document.getElementById("input_file");
 
@@ -250,40 +125,22 @@ sumbit_emp.addEventListener("click", (e) => {
   }
 
   const newEmpData = new FormData();
-  newEmpData.append('salutation', salutation);
-  newEmpData.append('firstname', firstname);
-  newEmpData.append('lastname', lastname);
-  newEmpData.append('emailAddress', emailAddress);
-  newEmpData.append('mobilenumber',mobilenumber);
-  newEmpData.append('address', address);
-  newEmpData.append('qualifications', qualifications);
-  newEmpData.append('country', country);
-  newEmpData.append('state', state);
-  newEmpData.append('city', city);
-  newEmpData.append('pinzip', pinzip);
-  newEmpData.append('password', password);
-  newEmpData.append('DOB', newDate);
-  newEmpData.append('gender', gender)
-  newEmpData.append('username', username);
-  newEmpData.append('avatar', file);
-
-  // const post_emp = {
-  //   salutation,
-  //   firstname,
-  //   lastname,
-  //   emailAddress,
-  //   mobilenumber,
-  //   DOB: newDate,
-  //   address,
-  //   country,
-  //   state,
-  //   city,
-  //   password,
-  //   username,
-  //   gender,
-  //   qualifications,
-  //   pinzip,
-  // };
+  newEmpData.append("salutation", salutation);
+  newEmpData.append("firstname", firstname);
+  newEmpData.append("lastname", lastname);
+  newEmpData.append("emailAddress", emailAddress);
+  newEmpData.append("mobilenumber", mobilenumber);
+  newEmpData.append("address", address);
+  newEmpData.append("qualifications", qualifications);
+  newEmpData.append("country", country);
+  newEmpData.append("state", state);
+  newEmpData.append("city", city);
+  newEmpData.append("pinzip", pinzip);
+  newEmpData.append("password", password);
+  newEmpData.append("DOB", newDate);
+  newEmpData.append("gender", gender);
+  newEmpData.append("username", username);
+  newEmpData.append("avatar", file);
 
   console.log(newEmpData);
   fetch("http://localhost:8080/api/employees", {
@@ -293,14 +150,12 @@ sumbit_emp.addEventListener("click", (e) => {
     .then((res) => {
       // Parse the response JSON once and store it in a variable
       return res.json();
-      
     })
     .then((newEmpData) => {
       console.log(newEmpData);
       clearform();
       showPopup();
       read_emp();
-
     })
     .catch((error) => {
       console.error("Fetch error:", error);
@@ -310,26 +165,11 @@ sumbit_emp.addEventListener("click", (e) => {
 // detet employee
 function delete_emp(id) {
   console.log(id);
-  
+
   fetch(`http://localhost:8080/api/employees/${id}`, {
     method: "DELETE",
   });
 }
-
-// function delete_emp(id) {
-//   document.getElementById("deleteModal").style.visibility = "visible";
-//   var del = document.getElementById("delete_emp_id");
-//   del.addEventListener("click", () => {
-//     fetch(`http://localhost:8080/api/employees/${id}`, {
-//       method: "DELETE",
-//     }).then((response) => {
-//       if (response.ok) {
-//         document.getElementById("deleteModal").style.visibility = "hidden";
-//         location.reload();
-//       }
-//     });
-//   });
-// }
 
 //  clear the form
 function clearform() {
@@ -354,13 +194,13 @@ function clearform() {
 
 // edit employee detials
 function editEmp(id) {
-  console.log(id);
+  // console.log(id);
   fetch(`http://localhost:8080/api/employees/${id}`, {
     method: "get",
   })
     .then((res) => res.json())
     .then((employ) => {
-      console.log(employ);
+      // console.log(employ);
 
       function formatchange(dob) {
         const array = dob.split("-");
@@ -373,12 +213,12 @@ function editEmp(id) {
       //   edit image
       document.getElementById("editImg").src = `/${employ.avatar}`;
 
-      document.getElementById("edit-salutation").value = employ.salutation;
-      document.getElementById("edit-firstName").value = employ.firstname;
-      document.getElementById("edit-lastName").value = employ.lastname;
-      document.getElementById("edit-email").value = employ.emailAddress;
-      document.getElementById("edit-mobilenumber").value = employ.mobilenumber;
-      document.getElementById("edit-dob").value = formatchange(employ.DOB);
+      document.getElementById("editsalutation").value = employ.salutation;
+      document.getElementById("editfirstName").value = employ.firstname;
+      document.getElementById("editlastName").value = employ.lastname;
+      document.getElementById("editemail").value = employ.emailAddress;
+      document.getElementById("editmobilenumber").value = employ.mobilenumber;
+      document.getElementById("editdob").value = formatchange(employ.DOB);
 
       var gender = document.getElementsByName("genders");
       var dbgender = employ.gender;
@@ -389,20 +229,32 @@ function editEmp(id) {
         }
       }
 
-      document.getElementById("edit-address").value = employ.address;
-      document.getElementById("edit-country").value = employ.country;
-      document.getElementById("edit_state").value = employ.state;
-      document.getElementById("edit-city").value = employ.city;
-      document.getElementById("edit-password").value = employ.password;
-      document.getElementById("edit-username").value = employ.username;
-      document.getElementById("edit-pin").value = employ.pinzip;
-      document.getElementById("edit-qualifications").value =
+      document.getElementById("editaddress").value = employ.address;
+      document.getElementById("editcountry").value = employ.country;
+      document.getElementById("editstate").value = employ.state;
+      document.getElementById("editcity").value = employ.city;
+      document.getElementById("editpassword").value = employ.password;
+      document.getElementById("editusername").value = employ.username;
+      document.getElementById("editpin").value = employ.pinzip;
+      document.getElementById("editqualifications").value =
         employ.qualifications;
     });
 
-  const form_emp_updata = document.getElementById("zero-edit");
+  const form_emp_updata = document.getElementById("zeroedit");
   form_emp_updata.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const isValid = FormValidationEdit();
+    if (!isValid) {
+      return;
+    }
+
+    // const isValid = FormValidationEdit();
+    // console.log(isValid);
+    // //FormValidationEdit();
+    // if (isValid) {
+      
+  
 
     function formatchangeedit(dob) {
       const array = dob.split("-");
@@ -413,25 +265,25 @@ function editEmp(id) {
       return dateformat;
     }
 
-    let editdatefromat = document.getElementById("edit-dob").value;
+    let editdatefromat = document.getElementById("editdob").value;
     let editdateupdate = formatchangeedit(editdatefromat);
 
     let formup = {
-      salutation: document.getElementById("edit-salutation").value,
-      firstname: document.getElementById("edit-firstName").value,
-      lastname: document.getElementById("edit-lastName").value,
-      emailAddress: document.getElementById("edit-email").value,
-      mobilenumber: document.getElementById("edit-mobilenumber").value,
-      address: document.getElementById("edit-address").value,
+      salutation: document.getElementById("editsalutation").value,
+      firstname: document.getElementById("editfirstName").value,
+      lastname: document.getElementById("editlastName").value,
+      emailAddress: document.getElementById("editemail").value,
+      mobilenumber: document.getElementById("editmobilenumber").value,
+      address: document.getElementById("editaddress").value,
       DOB: editdateupdate,
-      country: document.getElementById("edit-country").value,
-      state: document.getElementById("edit_state").value,
-      city: document.getElementById("edit-city").value,
+      country: document.getElementById("editcountry").value,
+      state: document.getElementById("editstate").value,
+      city: document.getElementById("editcity").value,
       gender: document.querySelector('input[name="genders"]:checked').value,
-      password: document.getElementById("edit-password").value,
-      username: document.getElementById("edit-username").value,
-      qualifications: document.getElementById("edit-qualifications").value,
-      pinzip: document.getElementById("edit-pin").value,
+      password: document.getElementById("editpassword").value,
+      username: document.getElementById("editusername").value,
+      qualifications: document.getElementById("editqualifications").value,
+      pinzip: document.getElementById("editpin").value,
       // file: document.getElementById('editImg').files[0],
     };
 
@@ -445,14 +297,124 @@ function editEmp(id) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
+      // .then((data) => {
         read_emp();
-      });
+        location.reload();
+      // });
   });
 }
 
+// function editEmp(id) {
+//   // console.log(id);
+//   fetch(`http://localhost:8080/api/employees/${id}`, {
+//     method: "get",
+//   })
+//     .then((res) => res.json())
+//     .then((employ) => {
+//       // console.log(employ);
+
+//       function formatchange(dob) {
+//         const array = dob.split("-");
+//         let day = array[2];
+//         let month = array[1];
+//         let year = array[0];
+//         let dateformat = day + "-" + month + "-" + year;
+//         return dateformat;
+//       }
+//       //   edit image
+//       document.getElementById("editImg").src = `/${employ.avatar}`;
+
+//       document.getElementById("editsalutation").value = employ.salutation;
+//       document.getElementById("editfirstName").value = employ.firstname;
+//       document.getElementById("editlastName").value = employ.lastname;
+//       document.getElementById("editemail").value = employ.emailAddress;
+//       document.getElementById("editmobilenumber").value = employ.mobilenumber;
+//       document.getElementById("editdob").value = formatchange(employ.DOB);
+
+//       var gender = document.getElementsByName("genders");
+//       var dbgender = employ.gender;
+
+//       for (var i = 0; i < gender.length; i++) {
+//         if (gender[i].value == dbgender) {
+//           gender[i].checked = true;
+//         }
+//       }
+
+//       document.getElementById("editaddress").value = employ.address;
+//       document.getElementById("editcountry").value = employ.country;
+//       document.getElementById("editstate").value = employ.state;
+//       document.getElementById("editcity").value = employ.city;
+//       document.getElementById("editpassword").value = employ.password;
+//       document.getElementById("editusername").value = employ.username;
+//       document.getElementById("editpin").value = employ.pinzip;
+//       document.getElementById("editqualifications").value =
+//         employ.qualifications;
+//     });
+
+//   const form_emp_updata = document.getElementById("zeroedit");
+//   form_emp_updata.addEventListener("submit", (e) => {
+//     e.preventDefault();
+
+//     console.log("Before validation");
+//     FormValidationEdit();
+//     if (isValid) {
+//       // Validation passed, proceed with form submission or other actions
+//       console.log("Validation passed");
+
+//       function formatchangeedit(dob) {
+//         const array = dob.split("-");
+//         let day = array[0];
+//         let month = array[1];
+//         let year = array[2];
+//         let dateformat = year + "-" + month + "-" + day;
+//         return dateformat;
+//       }
+
+//       let editdatefromat = document.getElementById("editdob").value;
+//       let editdateupdate = formatchangeedit(editdatefromat);
+
+//       let formup = {
+//         salutation: document.getElementById("editsalutation").value,
+//         firstname: document.getElementById("editfirstName").value,
+//         lastname: document.getElementById("editlastName").value,
+//         emailAddress: document.getElementById("editemail").value,
+//         mobilenumber: document.getElementById("editmobilenumber").value,
+//         address: document.getElementById("editaddress").value,
+//         DOB: editdateupdate,
+//         country: document.getElementById("editcountry").value,
+//         state: document.getElementById("editstate").value,
+//         city: document.getElementById("editcity").value,
+//         gender: document.querySelector('input[name="genders"]:checked').value,
+//         password: document.getElementById("editpassword").value,
+//         username: document.getElementById("editusername").value,
+//         qualifications: document.getElementById("editqualifications").value,
+//         pinzip: document.getElementById("editpin").value,
+//         // file: document.getElementById('editImg').files[0],
+//       };
+
+//       fetch(`http://localhost:8080/api/employees/${id}`, {
+//         method: "put",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(formup),
+//       })
+//         .then((res) => {
+//           return res.json();
+//         })
+//         .then((data) => {
+//           read_emp();
+//         });
+//       console.log("Form submitted successfully!");
+//     } else {
+//       // Validation failed, you can choose to display an additional message or take other actions
+//       console.log("Form validation failed!");
+//     }
+//   });
+// }
+
 //   // pagination
-var CurrentPage = 1; 
+var CurrentPage = 1;
 
 function pagination(totalPages) {
   console.log(totalPages);
@@ -543,20 +505,17 @@ function searchEmployee() {
   searchKey = searchKey.toLowerCase();
   if (searchKey) {
     fetch(`http://localhost:8080/api/employees/search/${searchKey}`)
-    .then((response) => response.json())
-    .then((data) => {
-      
-      display(data.employee,data.employee.length);
-    })
-    .catch((error) => console.error("Error:", error));
-  }else{
+      .then((response) => response.json())
+      .then((data) => {
+        display(data.employee, data.employee.length);
+      })
+      .catch((error) => console.error("Error:", error));
+  } else {
     read_emp();
-  } 
+  }
 }
 
-
 // function for search the element from table
-
 
 function FormValidation() {
   const form = document.getElementById("add_employee_form");
@@ -568,6 +527,7 @@ function FormValidation() {
   const mobilenumber = document.getElementById("mobilenumber").value.trim();
   const DOB = document.getElementById("DOB");
   const qualifications = document.getElementById("qualifications");
+  const gender = document.querySelector('input[name="gender"]:checked');
   const address = document.getElementById("address");
   const country = document.getElementById("country");
   const state = document.getElementById("state");
@@ -593,14 +553,14 @@ function FormValidation() {
   if (image.value.trim() === "") {
     errormessageImg.textContent = "Please select Image";
     isValid = false;
-  }
-  else {
+  } else {
     errormessageImg.textContent = "";
   }
 
   // salutation validation
   if (salutation.value.trim() === "select") {
-    errormessageSalutation.textContent = "Invalid select";
+    document.getElementById("errormessageSalutation").textContent =
+      "Invalid select";
     isValid = false;
   } else {
     errormessageSalutation.textContent = "";
@@ -644,15 +604,26 @@ function FormValidation() {
 
   // dob  validation
   if (DOB.value.trim() === "") {
-    errormessageDob.textContent = "Please select a date of birth";
+    document.getElementById("errormessageDob").textContent =
+      "Please select a date of birth";
     isValid = false;
   } else {
     errormessageDob.textContent = "";
   }
 
+  // gender  validation
+  if (!gender ) {
+    document.getElementById("errormessageGender").textContent =
+      "Please select your Gender";
+    isValid = false;
+  } else {
+    errormessageGender.textContent = "";
+  }
+
   // qualifications validation
   if (qualifications.value.trim() === "") {
-    errormessageQualifications.textContent = "Qualifications is required";
+    document.getElementById("errormessageQualifications").textContent =
+      "Qualifications is required";
     isValid = false;
   } else {
     errormessageQualifications.textContent = "";
@@ -660,7 +631,8 @@ function FormValidation() {
 
   // address validation
   if (address.value.trim() === "") {
-    errormessageAddress.textContent = "Address is required";
+    document.getElementById("errormessageAddress").textContent =
+      "Address is required";
     isValid = false;
   } else {
     errormessageAddress.textContent = "";
@@ -668,7 +640,8 @@ function FormValidation() {
 
   // country validation
   if (country.value.trim() === "select country") {
-    errormessageCountry.textContent = "country is required";
+    document.getElementById("errormessageCountry").textContent =
+      "country is required";
     isValid = false;
   } else {
     errormessageCountry.textContent = "";
@@ -676,7 +649,8 @@ function FormValidation() {
 
   // state validation
   if (state.value.trim() === "select State") {
-    errormessageState.textContent = "state is required";
+    document.getElementById("errormessageState").textContent =
+      "state is required";
     isValid = false;
   } else {
     errormessageState.textContent = "";
@@ -684,7 +658,8 @@ function FormValidation() {
 
   // city validation
   if (city.value.trim() === "") {
-    errormessageCity.textContent = "city is required";
+    document.getElementById("errormessageCity").textContent =
+      "city is required";
     isValid = false;
   } else {
     errormessageCity.textContent = "";
@@ -692,7 +667,7 @@ function FormValidation() {
 
   // Pin validation
   if (pinzip.value.trim() === "") {
-    errormessagePin.textContent = "pin is required";
+    document.getElementById("errormessagePin").textContent = "pin is required";
     isValid = false;
   } else {
     errormessagePin.textContent = "";
@@ -700,7 +675,8 @@ function FormValidation() {
 
   // username validation
   if (username.value.trim() === "") {
-    errormessageUsrname.textContent = "UserName is required";
+    document.getElementById("errormessageUsrname").textContent =
+      "UserName is required";
     isValid = false;
   } else {
     errormessageUsrname.textContent = "";
@@ -708,7 +684,8 @@ function FormValidation() {
 
   // password validation
   if (password.value.trim() === "") {
-    errormessagePass.textContent = "Password is required";
+    document.getElementById("errormessagePass").textContent =
+      "Password is required";
     isValid = false;
   } else {
     errormessagePass.textContent = "";
@@ -716,3 +693,168 @@ function FormValidation() {
 
   return isValid;
 }
+
+function FormValidationEdit() {
+  const form = document.getElementById("zero-edit");
+  // const image = document.getElementById("input_file");
+  const editsalutation = document.getElementById("editsalutation");
+  // console.log(editsalutation);
+  const editfirstName = document.getElementById("editfirstName").value.trim();
+  const editlastName = document.getElementById("editlastName").value.trim();
+  const editemail = document.getElementById("editemail").value.trim();
+  const editmobilenumber = document
+    .getElementById("editmobilenumber")
+    .value.trim();
+  const editdob = document.getElementById("editdob");
+  const editqualifications = document.getElementById("editqualifications");
+  const editaddress = document.getElementById("editaddress");
+  const editcountry = document.getElementById("editcountry");
+  const editstate = document.getElementById("editstate");
+  const editcity = document.getElementById("editcity");
+  const editpin = document.getElementById("editpin");
+  const editusername = document.getElementById("editusername");
+  const editpassword = document.getElementById("editpassword");
+
+  //   // date of birth
+  const dobInput = document.getElementById("editdob");
+  const dobError = document.getElementById("errormessageDob");
+  const dobValue = dobInput.value.trim();
+
+  // Regular expression patterns
+  const namePattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/; // Allows a space between names
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const phonePattern = /^\d{10,}$/; // Validates for at least 10 digits
+
+  // Flag to check for validation
+  let isValid = true;
+
+
+  // console.log("Before salutation validation:", editsalutation);
+  // salutation validation
+   if (editsalutation.value === "select") {
+    document.getElementById("editErrormessageSalutation").textContent =
+      "Invalid select";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageSalutation").textContent = "";
+  }
+
+  // firstname validation
+  if (!namePattern.test(editfirstName)) {
+    document.getElementById("editErrormessagefirstname").textContent =
+      "First Name is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessagefirstname").textContent = "";
+  }
+
+  // lastname validation
+  if (!namePattern.test(editlastName)) {
+    document.getElementById("editErrormessagelastname").textContent =
+      "Please enter a valid last name.";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessagelastname").textContent = "";
+  }
+
+  // email validation
+  if (!emailPattern.test(editemail)) {
+    document.getElementById("editErrormessageEmail").textContent =
+      "Please enter a valid email address";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageEmail").textContent = "";
+  }
+
+  // phone validation
+  if (!phonePattern.test(editmobilenumber)) {
+    document.getElementById("editErrormessagePhone").textContent =
+      "Please enter a valid phone number.";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessagePhone").textContent = "";
+  }
+
+  // dob  validation
+  if (editdob.value.trim() === "") {
+    document.getElementById("editErrormessageDob").textContent =
+      "Please select a date of birth";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageDob").textContent = "";
+  }
+
+  // qualifications validation
+  if (editqualifications.value.trim() === "") {
+    document.getElementById("editErrormessageQualifications").textContent =
+      "Qualifications is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageQualifications").textContent = "";
+  }
+
+  // address validation
+  if (editaddress.value.trim() == '') {
+    document.getElementById("editErrormessageAddress").textContent =
+      "Address is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageAddress").textContent = "";
+  }
+
+  // country validation
+  if (editcountry.value.trim() === "select country") {
+    document.getElementById("editErrormessageCountry").textContent =
+      "country is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageCountry").textContent = "";
+  }
+
+  // state validation
+  if (editstate.value.trim() === "select state") {
+    document.getElementById("editErrormessageState").textContent =
+      "state is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageState").textContent = "";
+  }
+
+  // city validation
+  if (editcity.value.trim() === "") {
+    document.getElementById("editErrormessageCity").textContent =
+      "city is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageCity").textContent = "";
+  }
+
+  // Pin validation
+  if (editpin.value.trim() === "") {
+    document.getElementById("editErrormessagePin").textContent = "pin is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessagePin").textContent = "";
+  }
+
+  // username validation
+  if (editusername.value.trim() === "") {
+    document.getElementById("editErrormessageUsrname").textContent =
+      "UserName is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessageUsrname").textContent = "";
+  }
+
+  // password validation
+  if (editpassword.value.trim() === "") {
+    document.getElementById("editErrormessagePass").textContent =
+      "Password is required";
+    isValid = false;
+  } else {
+    document.getElementById("editErrormessagePass").textContent = "";
+  }
+
+  return isValid;
+}
+

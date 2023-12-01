@@ -6,6 +6,8 @@ const bodyparser = require("body-parser");
 
 const connectDB = require("./server/database/connection")
 
+const isAuth = require("./server/Auth/isAuth")
+
 const app = express();
 
 dotenv.config({ path: "config.env" });
@@ -16,6 +18,8 @@ app.use(morgan("tiny"));
 
 // mongoDb connection
 connectDB();
+
+app.use(express.json())
 
 app.use(express.json())
 

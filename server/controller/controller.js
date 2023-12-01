@@ -112,7 +112,7 @@ exports. getEmployees = asyncHandler(async (req, res) => {
   res.status(200).json({ maxCountOnPage, employees });
 });
 
-exports. getEmployee = asyncHandler(async (req, res) => {
+exports.getEmployee = asyncHandler(async (req, res) => {
   const employee = await addEmp.findById(req.params.id);
   if (!employee) {
     res.status(404);
@@ -121,100 +121,6 @@ exports. getEmployee = asyncHandler(async (req, res) => {
   res.status(200).json(employee);
 });
 
-// retrieve and return all user/retrieve and return a single user
-// exports.find = (req, res) => {
-//   if (req.query.id) {
-//     const id = req.query.id;
-//     addEmp
-//       .findById(id)
-//       .then((data) => {
-//         if (!data) {
-//           return res.status(400).json({
-//             message: `Not found user with id` + id,
-//           });
-//         } else {
-//           console.log(id);
-//           res.send(data);
-//         }
-//       })
-//       .catch((err) => {
-//         console.error("Error creating user:", err);
-//         res.status(500).json({
-//           message: "Error retrieving user with id" + id,
-//           error: err.message || "Internal Server Error",
-//         });
-//       });
-//   } else {
-//     addEmp
-//       .find()
-//       .then((user) => {
-//         res.send(user);
-//       })
-//       .catch((err) => {
-//         console.error("Error creating user:", err);
-//         res.status(500).json({
-//           message: "Error occurred while retring user information",
-//           error: err.message || "Internal Server Error",
-//         });
-//       });
-//   }
-// };
-
-// exports.find = (req, res) => {
-//   const page = req.query.page || 1;
-//   const limit = req.query.limit || 4;
-//   const skip = (page - 1) * limit;
-//   console.log(skip);
-
-//   if (req.query.id) {
-//     const id = req.query.id;
-//     addEmp
-//       .findById(id)
-//       .then((data) => {
-//         if (!data) {
-//           return res.status(400).json({
-//             message: `Not found user with id` + id,
-//           });
-//         } else {
-//           console.log(id);
-//           res.send(data);
-//         }
-//       })
-//       .catch((err) => {
-//         console.error("Error creating user:", err);
-//         res.status(500).json({
-//           message: "Error retrieving user with id" + id,
-//           error: err.message || "Internal Server Error",
-//         });
-//       });
-//   } else {
-//     addEmp
-//       .countDocuments()
-//       .exec()
-//       .then((totalCount) => {
-//         addEmp
-//           .find()
-//           .then((user) => {
-//             user;
-
-//             const slicedData = user.slice(skip, skip + limit);
-
-//             res.status(200).json({
-//               message: "ok",
-//               length: totalCount,
-//               data: slicedData,
-//             });
-//           })
-//           .catch((err) => {
-//             console.error("Error creating user:", err);
-//             res.status(500).json({
-//               message: "Error occurred while retring user information",
-//               error: err.message || "Internal Server Error",
-//             });
-//           });
-//       });
-//   }
-// };
 exports. update = asyncHandler(async (req, res) => {
   const employee = await addEmp.findById(req.params.id);
   if (!employee) {
@@ -228,74 +134,7 @@ exports. update = asyncHandler(async (req, res) => {
   );
   res.status(200).json(updatedemployee);
 });
-// update and new idetified user bu user id
-// exports.update = (req, res) => {
-//   upload(req, res, async (error) => {
-//     if (error instanceof multer.MulterError) {
-//       res.status(400).json({ err: "image upload error" });
-//     } else if (error) {
-//       res.status(500).json({ error: "server error" });
-//     }
 
-//     let avatarPath;
-//     if (req.file) {
-//       avatarPath = path.join("avatars", req.file.filename);
-//     } else {
-//       // If no new file is uploaded, keep the existing avatar path
-//       const emp = await addEmp.findById(req.params.id);
-//       if (!emp) {
-//         res.status(404).json({ error: "employee not found" });
-//         return;
-//       }
-//       avatarPath = emp.avatar; // Use the existing avatar path
-//     }
-
-//     const emp = await addEmp.findById(req.params.id);
-//     if (!emp) {
-//       res.status(404);
-//       throw new Error("employee not found");
-//     }
-//     // Update avatar only if a new file was uploaded
-//     const updateData = {
-//       ...req.body,
-//       ...(avatarPath ? { avatar: avatarPath } : {}), // Conditionally include avatar field
-//     };
-
-//     console.log(avatarPath);
-//     const upd = await addEmp.findByIdAndUpdate(req.params.id,updateData, {
-//       new: true,
-//     });
-//     console.log(upd);
-//     res.status(200).json(upd);
-//   });
-// };
-
-// exports.update = (req, res) => {
-//   if (isEmpty(req.body)) {
-//     return res.status(400).json({ message: "data to update cannot be empty!" });
-//   }
-
-//   const id = req.params.id;
-//   addEmp
-//     .findByIdAndUpdate(id, req.body, { new: true })
-//     .then((data) => {
-//       if (!data) {
-//         return res.status(400).json({
-//           message: `Cannot update user with ${id}. May user not found!`,
-//         });
-//       } else {
-//         console.log(id);
-//         res.send(data);
-//       }
-//     })
-//     .catch((err) => {
-//       console.error("Error updating user:", err);
-//       res.status(500).json({
-//         message: "Error updating user information",
-//         error: err.message || "Internal Server Error",
-//       });
-//     });
-// };
 
 // delete a user with specified user id in the rquest
 exports.delete = (req, res) => {
